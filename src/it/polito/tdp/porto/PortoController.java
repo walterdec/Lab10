@@ -52,6 +52,10 @@ public class PortoController {
     	txtResult.clear();
     	Author a1 = boxPrimo.getSelectionModel().getSelectedItem();
     	Author a2 = boxSecondo.getSelectionModel().getSelectedItem();
+    	if(a1 == a2) {
+    		txtResult.setText("Gli autori selezionati corrispondono. Selezionare autori differenti.\n");
+    		return;
+    	}
     	try{
     		for(Author a : model.getCamminoMinimo(a1, a2)) {
     			txtResult.appendText(a+"\n");

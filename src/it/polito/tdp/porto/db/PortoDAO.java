@@ -14,61 +14,6 @@ import it.polito.tdp.porto.model.Creator;
 import it.polito.tdp.porto.model.Paper;
 
 public class PortoDAO {
-
-	/*
-	 * Dato l'id ottengo l'autore.
-	 */
-	public Author getAutore(int id) {
-
-		final String sql = "SELECT * FROM author where id=?";
-		Map<Integer, Author> autori = this.getAllAutori();
-
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
-			st.setInt(1, id);
-
-			ResultSet rs = st.executeQuery();
-
-			if (rs.next()) {
-				return autori.get(id);
-			}
-			conn.close();
-			return null;
-
-		} catch (SQLException e) {
-			// e.printStackTrace();
-			throw new RuntimeException("Errore Db");
-		}
-	}
-
-	/*
-	 * Dato l'id ottengo l'articolo.
-	 */
-	public Paper getArticolo(int eprintid) {
-
-		final String sql = "SELECT * FROM paper where eprintid=?";
-
-		try {
-			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
-			st.setInt(1, eprintid);
-
-			ResultSet rs = st.executeQuery();
-
-			if (rs.next()) {
-				Paper paper = new Paper(rs.getInt("eprintid"), rs.getString("title"), rs.getString("issn"),
-						rs.getString("publication"), rs.getString("type"), rs.getString("types"));
-				return paper;
-			}
-
-			return null;
-
-		} catch (SQLException e) {
-			 e.printStackTrace();
-			throw new RuntimeException("Errore Db");
-		}
-	}
 	
 	public Map<Integer, Author> getAllAutori(){
 		
