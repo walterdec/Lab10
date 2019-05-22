@@ -11,7 +11,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnect {
 
-	private static String jdbcURL = "jdbc:mysql://localhost/porto2015";
+	private static String jdbcURL = "jdbc:mysql://localhost/porto2015?serverTimezone=Europe/Rome";
 	private static HikariDataSource ds;
 
 	public static Connection getConnection() {
